@@ -1,0 +1,49 @@
+{% extends 'recursos\layout.html' %}
+
+{% block tituloprincipal %} 
+    <h1>Centro de costos</h1>
+{% endblock %}
+
+{% block agregar %}
+    <a class="btn btn-primary" href="#">Agregar</a>
+{% endblock %}
+
+{% block buscar %}
+Buscar centro de costos por nombre de centro de costos
+    <form action="{%url 'centrocostos' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="descripcion" placeholder="Nombre de centro de costos">
+        <button type="submit" class="btn btn-primary">Buscar<img src="https://i.ibb.co/3MmNhz5/search-svgrepo-com.png" height="25px" width="25px"/></button>
+    </form>
+{% endblock %}
+
+{% block body %}
+
+<table>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Mensaje</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for datos in data %}
+            <tr>
+                <th scope="row">{{datos.Codigo}}</th>
+                <td>{{datos.NombreCentroCostos}}</td>
+                <td>{{datos.Mensaje}}</td>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <td>
+                        <button type="submit" class="btn btn-danger">Eliminar<img src="https://i.ibb.co/JmRz9Kh/delete-2-svgrepo-com.png" height="25px" width="25px"/></button>
+                        <button class="btn btn-success" href="#">Editar<img src="https://i.ibb.co/yS3QgtW/edit-svgrepo-com.png" height="25px" width="25px"/></button>
+                    </td>
+                </form>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Recursos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar fixed-top navbar-light">
+            <ul>
+                <a>{% block tituloprincipal %} {% endblock %}</a>
+                <li>{% block buscar %} {% endblock %}</li><br>
+                <l1>{% block agregar %} {% endblock %}</l1>
+            </ul>
+        </nav>
+    </div>
+    <div class="side-var">
+        <h3>Menu de opciones</h3>
+        <a href="{% url 'centrocostos' %}">Centro de costos</a></br>
+        <a href="#">Movimiento de plantilla</a></br>
+        <a href="#">Trabajador</a></br>
+        <a href="#">Tipos de Trabajadores</a><br>
+        <a href="{% url 'pagEstadoTrabajador' %}">Estado de Trabajador</a><br>
+        <a href="{% url 'pagTipoContrato' %}">Tipo de Contrato</a><br>
+        <a href="{% url 'pagTipoCese' %}">Tipo de Cese</a><br>
+        <a href="{% url 'pagCategoriaOcupacional' %}">Categoria Ocupacional</a><br>
+        <a href="{% url 'pagNivelSalarial' %}">Nivel Salarial</a><br>
+        <a href="{% url 'index' %}">Salir</a></br>
+    </div>
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

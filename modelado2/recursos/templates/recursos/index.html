@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Recursos</title>
+    <link rel="stylesheet" href="recursos/css/bootstrap.min.css">
+    <link rel="stylesheet" href="recursos/css/estilos.css">
+    <link rel="stylesheet" href="{% static 'css/style-login.css' %}">
+</head>
+<body>
+    <form action="{%url 'index' %}" method="post">
+        {% csrf_token %}
+        <section class="form-login">
+            <h1>Login</h1>
+            <input class="control" type="text" name="username" placeholder="Usuario"><br>
+            <input class="control" type="password" name="password" placeholder="Contraseña"><br>
+            {% if error %}
+                <h4>{{error}}</h4>
+            {% endif %}
+            <div class="form-group">
+                Emisor:<select name="emisor">
+                    {% for data in emisores %}
+                        <option>{{data.NombreEmisor}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="button" type="submit">Login</button>
+        </section> 
+    </form>
+</body>
+</html>
