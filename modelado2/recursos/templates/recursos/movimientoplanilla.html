@@ -1,0 +1,74 @@
+{% extends 'recursos/layout.html' %}
+
+{% block title %}
+    Movimiento de plantilla
+{% endblock  %}
+
+{% block tituloprincipal %}
+    <h1>Movimiento de plantilla</h1>
+{% endblock %}
+
+{% block buscar %}
+    Buscar Movimiento de plantilla por Codigo:
+    <form action="PagMovimientoPlanillaSearch" method="post">
+        {% csrf_token %}
+        <input type="text" name="Concepto" placeholder="Concepto">
+        <button type="submit" class="btn btn-primary">Buscar<img src="https://i.ibb.co/3MmNhz5/search-svgrepo-com.png" height="25px" width="25px"/></button>
+    </form>
+{% endblock %}
+
+{% block agregar %}
+    <a href="{% url 'PagMovimientoPlanillaCreate' %}" class="btn btn-primary">Agregar<img src="https://i.ibb.co/jydyV2j/add-plus-circle-svgrepo-com.png" height="25px" width="25px"/></a>
+{% endblock %}
+
+{% block body %}
+    
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Prioridad</th>
+                <th scope="col">TipoOperacion</th>
+                <th scope="col">Cuenta1</th>
+                <th scope="col">Cuenta2</th>
+                <th scope="col">Cuenta3</th>
+                <th scope="col">Cuenta4</th>
+                <th scope="col">MovimientoExcepcion1</th>
+                <th scope="col">MovimientoExcepcion2</th>
+                <th scope="col">MovimientoExcepcion3</th>
+                <th scope="col">Aplica_iess</th>
+                <th scope="col">Aplica_imp_renta</th>
+                <th scope="col">Empresa_Afecta_Iess</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for datos in data %}
+                <tr>
+                    <th scope="row">{{datos.CodigoConcepto}}</th>
+                    <td>{{datos.Concepto}}</td>
+                    <td>{{datos.Prioridad}}</td>
+                    <td>{{datos.TipoOperacion}}</td>
+                    <td>{{datos.Cuenta1}}</td>
+                    <td>{{datos.Cuenta2}}</td>
+                    <td>{{datos.Cuenta3}}</td>
+                    <td>{{datos.Cuenta4}}</td>
+                    <td>{{datos.MovimientoExcepcion1}}</td>
+                    <td>{{datos.MovimientoExcepcion2}}</td>
+                    <td>{{datos.MovimientoExcepcion3}}</td>
+                    <td>{{datos.Aplica_iess}}</td>
+                    <td>{{datos.Aplica_imp_renta}}</td>
+                    <td>{{datos.Empresa_Afecta_Iess}}</td>
+                    <td>
+                        <form action="{% url 'eliminarMovimientoPlanilla' datos.CodigoConcepto %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar<img src="https://i.ibb.co/JmRz9Kh/delete-2-svgrepo-com.png" height="25px" width="25px"/></button>
+                        </form>
+                        <a class="btn btn-success" href="{% url 'PagMovimientoPlanillaEdit' datos.CodigoConcepto %}">Editar<img src="https://i.ibb.co/yS3QgtW/edit-svgrepo-com.png" height="25px" width="25px"/></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock  %}

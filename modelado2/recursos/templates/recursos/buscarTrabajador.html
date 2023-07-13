@@ -1,0 +1,23 @@
+{% extends 'recursos/layout.html' %}
+
+{% block title %}
+    Busqueda de informacion
+{% endblock  %}
+
+{% block tituloprincipal %}
+    <h1>Ponga la sucursal a buscar los trabajadores</h1>
+{% endblock %}
+
+{% block body %}
+    <form action="{%url 'PagTrabajadores' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            Sucursal:<select name="sucursal">
+                {% for data in dataSucursal %}
+                    <option>{{data.NombreEmisor}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar<img src="https://i.ibb.co/3MmNhz5/search-svgrepo-com.png" height="25px" width="25px"/></button>
+    </form>
+{% endblock  %}
